@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
 interface CharacterData {
@@ -62,7 +62,7 @@ const sampleBackstories = [
   'Discovered a secret portal to other dimensions in their backyard'
 ];
 
-export default function CharacterSetupPage() {
+function CharacterSetupContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const mode = searchParams.get('mode') || 'story'; // 'story' or 'comic'
@@ -623,5 +623,13 @@ export default function CharacterSetupPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function CharacterSetupPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-gradient-to-br from-purple-400 via-pink-500 to-red-500 flex items-center justify-center"><div className="text-white text-xl">Loading...</div></div>}>
+      <CharacterSetupContent />
+    </Suspense>
   );
 }
