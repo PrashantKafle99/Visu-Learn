@@ -334,7 +334,7 @@ DOUBLE-CHECK BEFORE YOU SUBMIT:
     console.log(`Title: ${comicContent.title}`);
     console.log(`Description: ${comicContent.description}`);
     console.log('Panels:');
-    comicContent.panels.forEach((panel: { panel_id: number; panel_text: string; image_generation_prompt: string }, index: number) => {
+    comicContent.panels.forEach((panel: { panel_id: number; panel_text: string; image_generation_prompt: string }) => {
       console.log(`  Panel ${panel.panel_id}: ${panel.panel_text}`);
       console.log(`  Image: ${panel.image_generation_prompt}`);
       console.log('  ---');

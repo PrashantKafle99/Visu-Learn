@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from "next/navigation";
 
 export function LoadingScreen() {
@@ -40,7 +40,7 @@ export function LoadingScreen() {
       clearInterval(progressInterval);
       clearInterval(textInterval);
     };
-  }, [router]);
+  }, [router, loadingTexts.length]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-100 via-purple-200 to-pink-200 flex items-center justify-center relative overflow-hidden">

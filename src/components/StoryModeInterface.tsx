@@ -30,6 +30,7 @@ export function StoryModeInterface() {
     storySetting: ''
   });
   const [isCapturing, setIsCapturing] = useState(false);
+  const [imageError, setImageError] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -251,7 +252,7 @@ export function StoryModeInterface() {
                   📝
                 </div>
                 <h2 className="text-2xl font-bold text-purple-800 mb-2 font-[var(--font-fredoka)]">
-                  Let's Create Your Story!
+                  Let&apos;s Create Your Story!
                 </h2>
                 <p className="text-purple-600 mb-4">
                   Tell us about the adventure you want to experience

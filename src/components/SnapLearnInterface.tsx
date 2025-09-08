@@ -1,10 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { ImageUploadModal } from "./ImageUploadModal";
 
 export function SnapLearnInterface() {
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-purple-100 to-pink-100 relative overflow-hidden">
@@ -48,14 +47,27 @@ export function SnapLearnInterface() {
             Ready to explore?
           </h2>
           <p className="text-purple-600 mb-8 max-w-md mx-auto">
-            Choose how you'd like to capture an image and start your learning
+            Choose how you&apos;d like to capture an image and start your learning
             adventure!
           </p>
         </div>
       </main>
 
-      {/* Image Upload Modal */}
-      {showModal && <ImageUploadModal onClose={() => setShowModal(false)} />}
+      {/* Image Upload Modal - TODO: Implement modal component */}
+      {showModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-3xl p-8 max-w-md mx-4">
+            <h3 className="text-xl font-bold mb-4">Upload Image</h3>
+            <p className="mb-4">Image upload functionality coming soon!</p>
+            <button 
+              onClick={() => setShowModal(false)}
+              className="bg-purple-500 text-white px-4 py-2 rounded-lg"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

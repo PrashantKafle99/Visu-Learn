@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 
 interface StorySegment {
   segment_id: number;
@@ -34,15 +34,11 @@ export default function StoryResultsPage() {
   const [showFullscreenControls, setShowFullscreenControls] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [audioUrl, setAudioUrl] = useState<string | null>(null);
+  const [, setAudioUrl] = useState<string | null>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
   const segmentTimerRef = useRef<NodeJS.Timeout | null>(null);
 
-  useEffect(() => {
-    loadStoryData();
-  }, []);
-
-  const loadStoryData = async () => {
+  const loadStoryData = useCallback(async () => {
     try {
       const savedData = localStorage.getItem('storyModeData');
       if (!savedData) {
@@ -68,7 +64,11 @@ export default function StoryResultsPage() {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    loadStoryData();
+  }, [loadStoryData]);
 
   const generateStory = async (data: StoryData) => {
     try {
@@ -209,7 +209,7 @@ export default function StoryResultsPage() {
       setStorySegments([...updatedSegments]);
       
       const segmentEndTime = performance.now();
-      const segmentTotalDuration = ((segmentEndTime - (i === 0 ? startTime : performance.now() - 1000)) / 1000).toFixed(2);
+      // const segmentTotalDuration = ((segmentEndTime - (i === 0 ? startTime : performance.now() - 1000)) / 1000).toFixed(2);
       console.log(`🎯 [${segment.segment_id}] Segment completed! Progress: ${i + 1}/${segments.length}`);
       console.log('─'.repeat(40));
     }
@@ -232,6 +232,7 @@ export default function StoryResultsPage() {
     console.log('='.repeat(60) + '\n');
   };
 
+  /*
   const generateAudio = async (text: string) => {
     try {
       setIsGeneratingAudio(true);
@@ -263,6 +264,7 @@ export default function StoryResultsPage() {
       setIsGeneratingAudio(false);
     }
   };
+  */
 
   const playSegment = async (segmentIndex: number) => {
     if (segmentIndex >= storySegments.length) {
@@ -341,7 +343,7 @@ export default function StoryResultsPage() {
     setIsFullscreen(!isFullscreen);
   };
 
-  const handleKeyPress = (e: KeyboardEvent) => {
+  const handleKeyPress = useCallback((e: KeyboardEvent) => {
     if (e.key === 'Escape' && isFullscreen) {
       setIsFullscreen(false);
     }
@@ -358,7 +360,7 @@ export default function StoryResultsPage() {
       e.preventDefault();
       setShowFullscreenControls(!showFullscreenControls);
     }
-  };
+  }, [isFullscreen, currentSegment, storySegments.length, showFullscreenControls]);
 
   const handleFullscreenClick = () => {
     if (isFullscreen) {
@@ -381,7 +383,7 @@ export default function StoryResultsPage() {
     return () => {
       window.removeEventListener('keydown', handleKeyPress);
     };
-  }, [isFullscreen, currentSegment, storySegments.length]);
+  }, [handleKeyPress]);
 
   const handleRestart = () => {
     setCurrentSegment(0);
@@ -503,7 +505,7 @@ export default function StoryResultsPage() {
               </button>
               <div>
                 <h1 className="text-3xl lg:text-4xl font-bold text-purple-800 font-[var(--font-fredoka)]">
-                  📖 {storyData?.childName}'s Adventure
+                  📖 {storyData?.childName}&apos;s Adventure
                 </h1>
                 <p className="text-lg text-purple-600">
                   A {storyData?.storyType} story about {storyData?.subject}

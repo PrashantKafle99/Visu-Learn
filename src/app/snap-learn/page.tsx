@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 interface AnalysisResult {
   concept: {
@@ -39,7 +39,7 @@ export default function SnapLearn() {
     image: string;
     subject: string;
   } | null>(null);
-  const [audioUrl, setAudioUrl] = useState<string | null>(null);
+  const [, setAudioUrl] = useState<string | null>(null);
   const [enhancedImage, setEnhancedImage] = useState<string | null>(null);
   const [isGeneratingAudio, setIsGeneratingAudio] = useState(false);
   const [isEnhancingImage, setIsEnhancingImage] = useState(false);
@@ -50,35 +50,7 @@ export default function SnapLearn() {
   const [audioReady, setAudioReady] = useState(false);
   const [imageReady, setImageReady] = useState(false);
 
-  useEffect(() => {
-    // Get data from localStorage
-    const data = localStorage.getItem("snapLearnData");
-    if (data) {
-      const parsedData = JSON.parse(data);
-      setSnapLearnData(parsedData);
-
-      // Call API to analyze image
-      analyzeImage(parsedData.image, parsedData.subject);
-    } else {
-      setError("No image data found");
-      setIsLoading(false);
-    }
-  }, []);
-
-  // Effect to handle transition when both audio and image are ready
-  useEffect(() => {
-    if (audioReady && imageReady && isLoading) {
-      // Both are ready, stop loading and play audio after 2 seconds
-      setIsLoading(false);
-      setTimeout(() => {
-        if (audioElement) {
-          audioElement.play();
-        }
-      }, 2000);
-    }
-  }, [audioReady, imageReady, isLoading, audioElement]);
-
-  const analyzeImage = async (image: string, subject: string) => {
+  const analyzeImage = useCallback(async (image: string, subject: string) => {
     try {
       const response = await fetch("/api/analyze-image", {
         method: "POST",
@@ -115,11 +87,39 @@ export default function SnapLearn() {
       } else {
         setError(data.error || "Failed to analyze image");
       }
-    } catch (err) {
+    } catch {
       setError("Network error occurred");
       setIsLoading(false);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    // Get data from localStorage
+    const data = localStorage.getItem("snapLearnData");
+    if (data) {
+      const parsedData = JSON.parse(data);
+      setSnapLearnData(parsedData);
+
+      // Call API to analyze image
+      analyzeImage(parsedData.image, parsedData.subject);
+    } else {
+      setError("No image data found");
+      setIsLoading(false);
+    }
+  }, [analyzeImage]);
+
+  // Effect to handle transition when both audio and image are ready
+  useEffect(() => {
+    if (audioReady && imageReady && isLoading) {
+      // Both are ready, stop loading and play audio after 2 seconds
+      setIsLoading(false);
+      setTimeout(() => {
+        if (audioElement) {
+          audioElement.play();
+        }
+      }, 2000);
+    }
+  }, [audioReady, imageReady, isLoading, audioElement]);
 
   const generateAudio = async (text: string) => {
     const startTime = performance.now();
@@ -166,7 +166,7 @@ export default function SnapLearn() {
     }
   };
 
-  const enhanceImage = async (image: string, visualEdits: { arrows?: any[]; highlights?: any[]; labels?: any[] }) => {
+  const enhanceImage = async (image: string, visualEdits: { arrows?: Array<{x: number, y: number, direction: string}>; highlights?: Array<{x: number, y: number, width: number, height: number}>; labels?: Array<{x: number, y: number, text: string}> }) => {
     const startTime = performance.now();
     setIsEnhancingImage(true);
     console.log("🎨 Starting Image Enhancement API call...");
@@ -224,7 +224,7 @@ export default function SnapLearn() {
               Magic is Happening!
             </h1>
             <p className="text-xl text-purple-600 mb-8">
-              We're analyzing your image for {snapLearnData?.subject}{" "}
+              We&apos;re analyzing your image for {snapLearnData?.subject}{" "}
               concepts...
             </p>
           </div>
@@ -301,7 +301,7 @@ export default function SnapLearn() {
             🎉 Amazing Discovery!
           </h1>
           <p className="text-xl text-purple-600">
-            Here's what we found in your {snapLearnData?.subject} image:
+            Here&apos;s what we found in your {snapLearnData?.subject} image:
           </p>
         </div>
 

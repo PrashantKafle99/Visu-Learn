@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 
 interface ComicPanel {
   panel_id: number;
@@ -34,11 +34,7 @@ export default function ComicResultsPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    loadComicData();
-  }, []);
-
-  const loadComicData = async () => {
+  const loadComicData = useCallback(async () => {
     try {
       const savedData = localStorage.getItem('comicModeData');
       const savedImage = localStorage.getItem('comicModeImage');
@@ -63,7 +59,11 @@ export default function ComicResultsPage() {
       setError('Failed to load comic data. Please try again.');
       setIsLoading(false);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    loadComicData();
+  }, [loadComicData]);
 
   const generateComic = async (data: ComicData) => {
     try {

@@ -128,7 +128,7 @@ export default function CharacterSetupPage() {
     });
   };
 
-  const handleInputChange = (field: keyof CharacterData, value: any) => {
+  const handleInputChange = (field: keyof CharacterData, value: string | number | null) => {
     setCharacterData(prev => ({
       ...prev,
       [field]: value

@@ -95,7 +95,7 @@ export function ComicModeInterface() {
     });
   };
 
-  const handleInputChange = (field: keyof ComicFormData, value: any) => {
+  const handleInputChange = (field: keyof ComicFormData, value: string | number | null | boolean) => {
     setFormData(prev => ({
       ...prev,
       [field]: value
