@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Generator & Editor</title>
+    <style>
+        body{font-family: Arial, sans-serif;margin:0;padding:20px;background:#f2f2f2;color:#333}
+        h1{text-align:center}
+        .section{background:#fff;padding:20px;margin-bottom:20px;border-radius:8px;box-shadow:0 2px 4px rgba(0,0,0,0.1)}
+        label{display:block;margin-bottom:8px;font-weight:bold}
+        input[type="text"], input[type="file"]{width:100%;padding:8px;margin-bottom:12px;border:1px solid #ccc;border-radius:4px}
+        textarea{width:100%;padding:8px;margin-bottom:12px;border:1px solid #ccc;border-radius:4px;font-family:inherit}
+        button{padding:10px 16px;background:#007bff;color:#fff;border:none;border-radius:4px;cursor:pointer}
+        button:disabled{background:#7aaefc;cursor:not-allowed}
+        img{max-width:100%;height:auto;margin-top:12px;border:1px solid #ccc;border-radius:4px}
+        audio{width:100%;margin-top:12px}
+        .loader{display:none;margin-top:10px}
+    </style>
+</head>
+<body>
+    <h1>Image Generator & Editor</h1>
+
+    <div class="section" id="generateSection">
+        <h2>Generate Image</h2>
+        <label for="generatePrompt">Prompt</label>
+        <input type="text" id="generatePrompt" placeholder="Describe the image you want...">
+        <button id="generateBtn">Generate</button>
+        <div class="loader" id="generateLoader">Generating...</div>
+        <img id="generatedPreview" alt="Generated preview" hidden>
+    </div>
+
+    <div class="section" id="editSection">
+        <h2>Edit Image</h2>
+        <label for="editImage">Select Image</label>
+        <input type="file" id="editImage" accept="image/*">
+        <label for="editPrompt">Edit Prompt</label>
+        <input type="text" id="editPrompt" placeholder="Describe the changes...">
+        <button id="editBtn">Edit Image</button>
+        <div class="loader" id="editLoader">Editing...</div>
+        <img id="editedPreview" alt="Edited preview" hidden>
+    </div>
+
+    <div class="section" id="ttsSection">
+        <h2>Text to Speech</h2>
+        <label for="ttsText">Text</label>
+        <textarea id="ttsText" rows="4" placeholder="Enter text to convert..."></textarea>
+        <button id="ttsBtn">Generate Audio</button>
+        <div class="loader" id="ttsLoader">Generating...</div>
+        <audio id="ttsAudio" controls hidden></audio>
+    </div>
+
+    <div class="section" id="sttSection">
+        <h2>Speech to Text</h2>
+        <button id="sttRecordBtn">Start Recording</button>
+        <div class="loader" id="sttLoader">Transcribing...</div>
+        <label for="sttOutput">Transcription</label>
+        <textarea id="sttOutput" rows="4" readonly hidden></textarea>
+    </div>
+
+<script src="script.js"></script>
+</body>
+</html>
