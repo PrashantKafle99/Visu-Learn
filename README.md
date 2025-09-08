@@ -13,9 +13,9 @@ VisuLearn is a web-first AI playground that transforms learning into an engaging
 ## 🚀 Technology Stack
 
 - **Frontend**: Next.js 15, TypeScript, Tailwind CSS
-- **AI**: Google Gemini 2.0 Flash for content generation
+- **AI**: Google Gemini 2.0 Flash Image aka Nano Banana for content generation
 - **Image Processing**: Custom AI image enhancement
-- **Audio**: Text-to-speech integration
+- **Audio**: Text-to-speech integration using Eleven Labs
 - **Storage**: LocalStorage for seamless user experience
 
 ## ⚙️ Setup & Installation
