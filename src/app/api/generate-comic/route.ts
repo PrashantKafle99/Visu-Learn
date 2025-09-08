@@ -306,7 +306,7 @@ DOUBLE-CHECK BEFORE YOU SUBMIT:
     }
 
     // Ensure each panel has required fields with enhanced character consistency
-    comicContent.panels = comicContent.panels.map((panel: any, index: number) => {
+    comicContent.panels = comicContent.panels.map((panel: { panel_id?: number; panel_text?: string; text?: string; image_generation_prompt?: string; image_prompt?: string }, index: number) => {
       let enhancedPrompt = panel.image_generation_prompt || panel.image_prompt || `Comic panel showing ${comicData.childName} the ${comicData.childRole}`;
       
       // Add character consistency instructions to every prompt
@@ -334,7 +334,7 @@ DOUBLE-CHECK BEFORE YOU SUBMIT:
     console.log(`Title: ${comicContent.title}`);
     console.log(`Description: ${comicContent.description}`);
     console.log('Panels:');
-    comicContent.panels.forEach((panel: any, index: number) => {
+    comicContent.panels.forEach((panel: { panel_id: number; panel_text: string; image_generation_prompt: string }, index: number) => {
       console.log(`  Panel ${panel.panel_id}: ${panel.panel_text}`);
       console.log(`  Image: ${panel.image_generation_prompt}`);
       console.log('  ---');

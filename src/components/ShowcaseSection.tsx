@@ -32,7 +32,7 @@ export function ShowcaseSection() {
                   </div>
                   <div className="bg-white rounded-xl p-3 relative mb-4">
                     <p className="text-purple-800 font-bold text-sm font-[var(--font-fredoka)]">
-                      "What makes plants grow?"
+                      &quot;What makes plants grow?&quot;
                     </p>
                     <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-white rotate-45"></div>
                   </div>
@@ -53,7 +53,7 @@ export function ShowcaseSection() {
                   </div>
                   <div className="bg-white rounded-xl p-3 relative mb-4">
                     <p className="text-green-800 font-bold text-sm font-[var(--font-fredoka)]">
-                      "Plants need sunlight, water, and nutrients!"
+                      &quot;Plants need sunlight, water, and nutrients!&quot;
                     </p>
                     <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-white rotate-45"></div>
                   </div>
@@ -73,7 +73,7 @@ export function ShowcaseSection() {
                   </div>
                   <div className="bg-white rounded-xl p-3 relative mb-4">
                     <p className="text-yellow-800 font-bold text-sm font-[var(--font-fredoka)]">
-                      "Great job! You earned a star!"
+                      &quot;Great job! You earned a star!&quot;
                     </p>
                     <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-white rotate-45"></div>
                   </div>

@@ -49,7 +49,7 @@ export function CTASection() {
               {/* Speech bubble */}
               <div className="absolute -top-16 -right-8 bg-white rounded-2xl p-4 shadow-lg animate-float">
                 <p className="text-purple-800 font-bold text-sm font-[var(--font-fredoka)] whitespace-nowrap">
-                  Let's learn together!
+                  Let&apos;s learn together!
                 </p>
                 <div className="absolute -bottom-2 left-6 w-4 h-4 bg-white rotate-45"></div>
               </div>

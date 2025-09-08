@@ -86,7 +86,7 @@ export function EngagementSection() {
           <div className="bg-white rounded-3xl p-8 shadow-xl max-w-2xl mx-auto border-4 border-purple-100">
             <div className="text-6xl mb-4 animate-bounce-gentle">😊</div>
             <p className="text-xl text-purple-700 font-medium mb-4 font-[var(--font-fredoka)]">
-              "My kids can't stop talking about their comic adventures!"
+              &quot;My kids can&apos;t stop talking about their comic adventures!&quot;
             </p>
             <p className="text-purple-600">- Happy Parent</p>
             <div className="flex justify-center mt-4 space-x-1">

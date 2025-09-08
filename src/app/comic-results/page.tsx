@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 
 interface ComicPanel {
   panel_id: number;
@@ -27,7 +27,7 @@ export default function ComicResultsPage() {
   const [currentPanel, setCurrentPanel] = useState(0);
   const [isGeneratingImages, setIsGeneratingImages] = useState(false);
   const [generationProgress, setGenerationProgress] = useState({ images: 0, total: 0 });
-  const [allAssetsReady, setAllAssetsReady] = useState(false);
+  const [, setAllAssetsReady] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [showFullscreenControls, setShowFullscreenControls] = useState(false);
@@ -327,7 +327,7 @@ export default function ComicResultsPage() {
               </button>
               <div>
                 <h1 className="text-3xl lg:text-4xl font-bold text-blue-800 font-[var(--font-fredoka)]">
-                  🎨 {comicData?.childName}'s Comic
+                  🎨 {comicData?.childName}&apos;s Comic
                 </h1>
                 <p className="text-lg text-blue-600">
                   A {comicData?.comicType} comic about {comicData?.subject}

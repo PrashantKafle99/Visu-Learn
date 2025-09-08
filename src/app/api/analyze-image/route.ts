@@ -128,7 +128,7 @@ IMPORTANT GUIDELINES:
 
 ${previousConcepts.length > 0 ? `
 PREVIOUS CONCEPTS ALREADY EXPLAINED:
-${previousConcepts.map((concept, index) => `${index + 1}. ${concept}`).join('\n')}
+${previousConcepts.map((concept: string, index: number) => `${index + 1}. ${concept}`).join('\n')}
 
 IMPORTANT: Do NOT repeat any of the above concepts. Find a DIFFERENT ${subject} concept in the same image. Look for other elements, patterns, or phenomena that haven't been explained yet.
 ` : ''}
@@ -181,7 +181,7 @@ Now analyze the provided image and respond in the exact JSON format above:`;
       } else {
         analysisResult = JSON.parse(generatedText);
       }
-    } catch (parseError) {
+    } catch {
       // If JSON parsing fails, return the raw text
       analysisResult = {
         concept: {

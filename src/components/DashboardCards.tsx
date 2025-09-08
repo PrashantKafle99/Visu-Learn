@@ -472,7 +472,7 @@ export function DashboardCards() {
                       Magic is Happening!
                     </h2>
                     <p className="text-purple-600 mb-6">
-                      Are you ready? We're analyzing your image...
+                      Are you ready? We&apos;re analyzing your image...
                     </p>
                   </div>
 

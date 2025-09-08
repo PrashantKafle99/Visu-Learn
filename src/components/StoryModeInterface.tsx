@@ -81,7 +81,7 @@ export function StoryModeInterface() {
     'Detective', 'Nature Guardian', 'Time Traveler', 'Inventor'
   ];
 
-  const handleInputChange = (field: keyof StoryFormData, value: any) => {
+  const handleInputChange = (field: keyof StoryFormData, value: string | number | boolean) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 

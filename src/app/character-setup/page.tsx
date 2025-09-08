@@ -522,7 +522,7 @@ export default function CharacterSetupPage() {
                       className={`w-full p-4 rounded-2xl border-2 ${colorScheme.border} focus:${colorScheme.borderHover} focus:outline-none ${colorScheme.text} ${colorScheme.bgLight}`}
                     />
                     <p className={`text-sm ${colorScheme.textLight} mt-2`}>
-                      Or choose from sample backstories above by clicking "Fill Random Details"
+                      Or choose from sample backstories above by clicking &quot;Fill Random Details&quot;
                     </p>
                   </div>
                 </div>

@@ -166,7 +166,7 @@ export default function SnapLearn() {
     }
   };
 
-  const enhanceImage = async (image: string, visualEdits: any) => {
+  const enhanceImage = async (image: string, visualEdits: { arrows?: any[]; highlights?: any[]; labels?: any[] }) => {
     const startTime = performance.now();
     setIsEnhancingImage(true);
     console.log("🎨 Starting Image Enhancement API call...");

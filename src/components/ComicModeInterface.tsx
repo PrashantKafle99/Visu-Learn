@@ -404,7 +404,7 @@ export function ComicModeInterface() {
                 {/* Child's Name */}
                 <div>
                   <label className="block text-lg font-bold text-blue-800 mb-3">
-                    👤 Child's Name
+                    👤 Child&apos;s Name
                   </label>
                   <input
                     type="text"

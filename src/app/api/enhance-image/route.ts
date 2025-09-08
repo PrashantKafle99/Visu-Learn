@@ -31,7 +31,7 @@ export async function POST(request: NextRequest) {
       // Add arrows instructions
       if (visualEdits?.arrows && visualEdits.arrows.length > 0) {
         enhancementPrompt += "ARROWS TO ADD:\n";
-        visualEdits.arrows.forEach((arrow: any, index: number) => {
+        visualEdits.arrows.forEach((arrow: { color: string; direction: string; position: string; purpose: string }, index: number) => {
           enhancementPrompt += `${index + 1}. Draw a ${arrow.color} arrow ${arrow.direction} ${arrow.position} to ${arrow.purpose}\n`;
         });
         enhancementPrompt += "\n";
@@ -40,7 +40,7 @@ export async function POST(request: NextRequest) {
       // Add highlights instructions
       if (visualEdits?.highlights && visualEdits.highlights.length > 0) {
         enhancementPrompt += "AREAS TO HIGHLIGHT:\n";
-        visualEdits.highlights.forEach((highlight: any, index: number) => {
+        visualEdits.highlights.forEach((highlight: { color: string; style: string; area: string; purpose: string }, index: number) => {
           enhancementPrompt += `${index + 1}. Add a ${highlight.color} ${highlight.style} highlight around ${highlight.area} to ${highlight.purpose}\n`;
         });
         enhancementPrompt += "\n";
@@ -49,7 +49,7 @@ export async function POST(request: NextRequest) {
       // Add labels instructions
       if (visualEdits?.labels && visualEdits.labels.length > 0) {
         enhancementPrompt += "LABELS TO ADD:\n";
-        visualEdits.labels.forEach((label: any, index: number) => {
+        visualEdits.labels.forEach((label: { color: string; text: string; position: string; purpose: string }, index: number) => {
           enhancementPrompt += `${index + 1}. Add ${label.color} text "${label.text}" ${label.position} to ${label.purpose}\n`;
         });
         enhancementPrompt += "\n";
@@ -100,7 +100,7 @@ export async function POST(request: NextRequest) {
       throw new Error('No candidate returned from Gemini Image API');
     }
     
-    const imagePart = candidate.content.parts.find((p: any) => p.inlineData?.data);
+    const imagePart = candidate.content.parts.find((p: { inlineData?: { data: string } }) => p.inlineData?.data);
     if (!imagePart) {
       throw new Error('No enhanced image in response');
     }
